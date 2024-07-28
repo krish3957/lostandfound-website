@@ -1,0 +1,46 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Install Dependencies for API
+        working-directory: ./API
+        run: npm install
+
+      - name: Run Tests for API
+        working-directory: ./API
+        run: npm test
+
+      - name: Install Dependencies for Client
+        working-directory: ./Client
+        run: npm install
+
+      - name: Build Client
+        working-directory: ./Client
+        run: npm run build
+
+      - name: Install Dependencies for Admin
+        working-directory: ./Admin
+        run: npm install
+
+      - name: Build Admin
+        working-directory: ./Admin
+        run: npm run build
