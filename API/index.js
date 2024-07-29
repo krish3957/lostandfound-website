@@ -10,23 +10,23 @@ app.use(cors());
 const itemRoute = require('./Routes/item');
 
 
-mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true});
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 
-mongoose.connection.on('connected',()=>{
+mongoose.connection.on('connected', () => {
     console.log("Database Connected Succesfully");
 });
 
-mongoose.connection.on("error",(err)=>{
+mongoose.connection.on("error", (err) => {
     console.log(`Error Found ${err}`);
 });
 
-mongoose.connection.on('disconnected',()=>{
+mongoose.connection.on('disconnected', () => {
     console.log("DisConnected");
 })
 
-app.use("/api/items",itemRoute);
+app.use("/api/items", itemRoute);
 
 const port = process.env.PORT || 3000;
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Server started succesfully on Port ${port}`);
 });
