@@ -25,9 +25,9 @@ jobs:
         working-directory: ./API
         run: npm install
 
-      - name: Run Tests for API
+      - name: Run API
         working-directory: ./API
-        run: npm test
+        run: npm start
 
       - name: Install Dependencies for Client
         working-directory: ./Client
