@@ -27,6 +27,10 @@ jobs:
 
       - name: Run API
         working-directory: ./API
+        env:
+          MONGO_URL: ${{ secrets.MONGO_URL }}
+          JWT_SEC: ${{secrets.JWT_SEC}}
+          PASS_SEC: ${{secrets.PASS_SEC}}
         run: npm start
 
       - name: Install Dependencies for Client
